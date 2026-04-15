@@ -3,9 +3,14 @@ from flask import Flask, render_template, request
 app = Flask(__name__)
 
 # 🔹 HOME PAGE
-@app.route('/')
+from flask import Flask, render_template, request
+
+@app.route('/', methods=['GET', 'HEAD'])
 def index():
+    if request.method == 'HEAD':
+        return '', 200   # ✅ empty response for health check
     return render_template("index.html")
+    
 
 
 # 🔹 STEP 1: CALCULATE BMI, BMR, TDEE
